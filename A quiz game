@@ -1,0 +1,105 @@
+def display_field():
+    print("Welcome to the Python Quiz!")
+    print("Choose a field of interest to start the quiz:")
+    print("1. Literature")
+    print("2. Science")
+    print("3. History")
+    print("4. Technology")
+    print("5. Sports")
+    print("Enter the number corresponding to your choice.\n")
+
+quiz_fields = {
+    "Literature": [
+        {
+            "question": "Which book series was written by J.K. Rowling?",
+            "options": ["a) The Chronicles of Narnia", "b) The Hunger Games", "c) Harry Potter", "d) Twilight"],
+            "answer": "c"
+        },
+        {
+            "question": "Which author famously wrote, 'It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife'?",
+            "options": ["a) Charlotte Brontë", "b) Jane Austen", "c) George Eliot", "d) Mary Shelley"],
+            "answer": "b"
+        },
+    ],
+    "Science": [
+        {
+            "question": "What is the chemical symbol for water?",
+            "options": ["a) O2", "b) H2O", "c) CO2", "d) H2"],
+            "answer": "b"
+        },
+        {
+            "question": "Which planet is known as the Red Planet?",
+            "options": ["a) Venus", "b) Mars", "c) Jupiter", "d) Saturn"],
+            "answer": "b"
+        },
+    ],
+    "History": [
+        {
+            "question": "Who was the first President of the United States?",
+            "options": ["a) Abraham Lincoln", "b) Thomas Jefferson", "c) George Washington", "d) John Adams"],
+            "answer": "c"
+        },
+        {
+            "question": "What year did World War II end?",
+            "options": ["a) 1940", "b) 1945", "c) 1950", "d) 1939"],
+            "answer": "b"
+        },
+    ],
+    "Technology": [
+        {
+            "question": "Who developed Google Search?",
+            "options": ["a) Larry Page and Sergey Brin", "b) Steve Ballmer", "c) Jerry Yang and David Filo", "d) Steve Chen, Chad Hurley, and Jawed Karim"],
+            "answer": "a"
+        },
+        {
+            "question": "The term 'DB' is used for which purpose in computer science?",
+            "options": ["a) Double-block", "b) Database Script Attribute in JS", "c) Database", "d) Data Byte"],
+            "answer": "c"
+        },
+    ],
+    "Sports": [
+        {
+            "question": "Which country won the first ICC Cricket World Cup in 1975?",
+            "options": ["a) Australia", "b) England", "c) India", "d) West Indies"],
+            "answer": "d"
+        },
+        {
+            "question": "In which year were the first modern Olympic Games held?",
+            "options": ["a) 1896", "b) 1900", "c) 1912", "d) 1920"],
+            "answer": "a"
+        },
+    ],
+}
+
+def run_quiz(questions):
+    score = 0
+    total_questions = len(questions)
+    for idx, item in enumerate(questions, 1):
+        print(f"Question {idx}: {item['question']}")
+        for options in item['options']:
+            print(options)
+        answer = input("Your answer: ").lower()
+        if answer == item["answer"]:
+            print("Correct!\n")
+            score += 1
+        else:
+            print(f"Wrong! The correct answer is {item['answer']}.\n")
+    print("Quiz Finished!")
+    print(f"Your score is {score}/{total_questions}.")
+    if score == total_questions:
+        print("Excellent! You got all answers correct.")
+    elif score > total_questions / 2:
+        print("Good job! You passed the quiz.")
+    else:
+        print("Better luck next time!")
+
+if __name__ == "__main__":
+    display_field()
+    field_choice = input("Enter your choice (1/2/3/4/5): ").strip()
+    field_map = {"1": "Literature", "2": "Science", "3": "History", "4": "Technology", "5": "Sports"}
+    selected_field = field_map.get(field_choice, None)
+    if selected_field and selected_field in quiz_fields:
+        print(f"\nYou have chosen the {selected_field} quiz!\n")
+        run_quiz(quiz_fields[selected_field])
+    else:
+        print("Invalid choice. Please restart the quiz and select a valid field.")
